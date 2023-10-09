@@ -1,0 +1,19 @@
+---
+galaxy_info:
+  role_name: fireactions
+  author: hostinger
+  description: BYOM (Bring Your Own Metal) and run self-hosted GitHub runners in ephemeral, fast and secure Firecracker based virtual machines.
+  license: license (MIT)
+  min_ansible_version: "2.10"
+  platforms:
+  - name: Fedora
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - all
+  galaxy_tags:
+  - fireactions

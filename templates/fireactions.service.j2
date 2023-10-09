@@ -1,0 +1,14 @@
+[Unit]
+Description=BYOM (Bring Your Own Metal) and run self-hosted GitHub runners in ephemeral, fast and secure Firecracker based virtual machines.
+Requires=network.target
+After=network.target
+
+[Service]
+User={{ fireactions_owner }}
+Type=simple
+ExecStart=/usr/local/bin/fireactions client --config {{ fireactions_config_file_path }}
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target

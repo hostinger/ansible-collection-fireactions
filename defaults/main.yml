@@ -1,0 +1,21 @@
+---
+fireactions_version: 0.0.1
+fireactions_os: linux
+fireactions_arch: amd64
+# (konradasb): TODO: Change this to GitHub releases after public release.
+fireactions_url: |
+  https://storage.googleapis.com/fireactions/fireactions-v{{ fireactions_version }}-{{ fireactions_os }}-{{ fireactions_arch }}.tar.gz
+fireactions_install_dir: /opt/fireactions
+fireactions_create_group: true
+fireactions_group: fireactions
+fireactions_create_owner: true
+fireactions_owner: fireactions
+
+fireactions_config_file_path: "{{ fireactions_config_dir }}/config.yaml"
+fireactions_config_dir: /etc/fireactions
+fireactions_config_server_url: http://127.0.0.1:8080
+fireactions_config_organisation: example
+fireactions_config_group: us-east-1
+fireactions_config_cpu_overcommit_ratio: 1.0
+fireactions_config_mem_overcommit_ratio: 1.0
+fireactions_config_log_level: info

@@ -1,0 +1,82 @@
+---
+- name: Create group
+  ansible.builtin.group:
+    name: "{{ fireactions_group }}"
+    system: true
+  when:
+    - fireactions_create_group | default(true) | bool
+
+- name: Create user
+  ansible.builtin.user:
+    name: "{{ fireactions_owner }}"
+    create_home: false
+    groups:
+      - "{{ fireactions_group }}"
+    shell: /sbin/nologin
+  when:
+    - fireactions_create_owner | default(true) | bool
+
+- name: Create directories
+  ansible.builtin.file:
+    name: "{{ item }}"
+    mode: 0755
+    owner: "{{ fireactions_owner }}"
+    group: "{{ fireactions_group }}"
+    state: directory
+  with_items:
+    - "{{ fireactions_install_dir }}"
+    - "{{ fireactions_install_dir }}/v{{ fireactions_version }}"
+    - "{{ fireactions_config_dir  }}"
+
+- name: Download tarball
+  ansible.builtin.get_url:
+    url: "{{ fireactions_url }}"
+    dest: "{{ fireactions_install_dir }}/v{{ fireactions_version }}/fireactions.tar.gz"
+    mode: 0644
+    owner: "{{ fireactions_owner }}"
+    group: "{{ fireactions_group }}"
+    timeout: 30
+
+- name: Unarchive tarball
+  ansible.builtin.unarchive:
+    src:  "{{ fireactions_install_dir }}/v{{ fireactions_version }}/fireactions.tar.gz"
+    remote_src: true
+    dest: "{{ fireactions_install_dir }}/v{{ fireactions_version }}"
+    creates: "{{ fireactions_install_dir }}/v{{ fireactions_version }}/fireactions"
+    owner: "{{ fireactions_owner }}"
+    group: "{{ fireactions_group }}"
+
+- name: Create symlink to binary
+  ansible.builtin.file:
+    src: "{{ fireactions_install_dir }}/v{{ fireactions_version }}/fireactions"
+    dest: /usr/local/bin/fireactions
+    mode: 0755
+    state: link
+    force: true
+
+- name: Template service file
+  ansible.builtin.template:
+    src: fireactions.service.j2
+    dest: /etc/systemd/system/fireactions.service
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Reload systemd
+
+- name: Template config file
+  ansible.builtin.template:
+    src: config.yaml.j2
+    dest: "{{ fireactions_config_file_path }}"
+    owner: "{{ fireactions_owner }}"
+    group: "{{ fireactions_group }}"
+    mode: 0644
+  notify:
+    - Restart fireactions
+
+- name: Enable and start service
+  ansible.builtin.service:
+    name: fireactions
+    enabled: true
+    daemon_reload: true
+    state: started

@@ -1,0 +1,32 @@
+{{ ansible_managed | comment }}
+
+#
+# The Fireactions server URL to connect to for the client.
+#
+server-url: {{ fireactions_config_server_url }}
+
+#
+# The name of the organisation that the client belongs to.
+#
+organisation: {{ fireactions_config_organisation }}
+
+#
+# The name of the group that the client belongs to. This is used to
+# group clients together for scheduling.
+#
+group: {{ fireactions_config_group }}
+
+#
+# Mem overcommit ratio is the ratio of RAM to allocate to the client
+# compared to the total memory available on the host.
+#
+# CPU overcommit ratio is the ratio of CPU to allocate to the client
+# compared to the total CPU available on the host.
+#
+cpu-overcommit-ratio: {{ fireactions_config_cpu_overcommit_ratio }}
+mem-overcommit-ratio: {{ fireactions_config_mem_overcommit_ratio }}
+
+#
+# Log level for the agent. Must be one of: debug, info, warn, error, fatal, panic, trace.
+#
+log-level: {{ fireactions_config_log_level | default('info') }}
