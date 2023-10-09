@@ -1,0 +1,71 @@
+---
+- name: Fail when unsupported architecture
+  ansible.builtin.fail:
+    msg: "Unsupported architecture"
+  when:
+    - fireactions_arch not in ['amd64', 'arm64']
+
+- name: Create directories
+  ansible.builtin.file:
+    name: "{{ item }}"
+    mode: 0755
+    owner: "{{ fireactions_owner }}"
+    group: "{{ fireactions_group }}"
+    state: directory
+  with_items:
+    - "{{ fireactions_install_dir }}"
+    - "{{ fireactions_config_dir }}"
+
+- name: Download tarball
+  ansible.builtin.get_url:
+    url: "{{ fireactions_url }}"
+    dest: "{{ fireactions_install_dir }}/fireactions-v{{ fireactions_version }}-linux-{{ fireactions_arch }}.tar.gz"
+    mode: 0644
+    owner: "{{ fireactions_owner }}"
+    group: "{{ fireactions_group }}"
+    timeout: 30
+
+- name: Unarchive tarball
+  ansible.builtin.unarchive:
+    src:  "{{ fireactions_install_dir }}/fireactions-v{{ fireactions_version }}-linux-{{ fireactions_arch }}.tar.gz"
+    dest: "{{ fireactions_install_dir }}"
+    creates: "{{ fireactions_install_dir }}/fireactions"
+    owner: "{{ fireactions_owner }}"
+    group: "{{ fireactions_group }}"
+    remote_src: true
+
+- name: Create symlink to binary
+  ansible.builtin.file:
+    src: "{{ fireactions_install_dir }}/fireactions"
+    dest: /usr/local/bin/fireactions
+    mode: 0755
+    state: link
+    force: true
+  notify:
+    - Restart fireactions
+
+- name: Template service file
+  ansible.builtin.template:
+    src: fireactions.service.j2
+    dest: /etc/systemd/system/fireactions.service
+    owner: root
+    group: root
+    mode: 0644
+  notify:
+    - Reload systemd
+
+- name: Template config file
+  ansible.builtin.template:
+    src: config.yaml.j2
+    dest: "{{ fireactions_config_file_path }}"
+    owner: "{{ fireactions_owner }}"
+    group: "{{ fireactions_group }}"
+    mode: 0644
+  notify:
+    - Restart fireactions
+
+- name: Enable and start service
+  ansible.builtin.service:
+    name: fireactions
+    enabled: true
+    state: "{{ fireactions_service_state }}"

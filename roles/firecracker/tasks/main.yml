@@ -1,0 +1,42 @@
+---
+- name: Fail when unsupported architecture
+  ansible.builtin.fail:
+    msg: "Unsupported architecture"
+  when:
+    - firecracker_arch not in ['x86_64', 'aarch64']
+
+- name: Create directory
+  ansible.builtin.file:
+    name: "{{ firecracker_install_dir }}"
+    mode: 0755
+    owner: "{{ firecracker_owner }}"
+    group: "{{ firecracker_group }}"
+    state: directory
+
+- name: Download tarball
+  ansible.builtin.get_url:
+    url: "{{ firecracker_url }}"
+    dest: "{{ firecracker_install_dir }}/firecracker.tar.gz"
+    mode: 0644
+    owner: "{{ firecracker_owner }}"
+    group: "{{ firecracker_group }}"
+    timeout: 30
+
+- name: Unarchive tarball
+  ansible.builtin.unarchive:
+    src:  "{{ firecracker_install_dir }}/firecracker.tar.gz"
+    remote_src: true
+    dest: "{{ firecracker_install_dir }}"
+    creates: "{{ firecracker_install_dir }}/firecracker-v{{ firecracker_version }}-{{ firecracker_arch }}"
+    owner: "{{ firecracker_owner }}"
+    group: "{{ firecracker_group }}"
+    extra_opts:
+      - --strip-components=1
+
+- name: Create symlink to binary
+  ansible.builtin.file:
+    src: "{{ firecracker_install_dir }}/firecracker-v{{ firecracker_version }}-{{ firecracker_arch }}"
+    dest: /usr/local/bin/firecracker
+    mode: 0755
+    state: link
+    force: true

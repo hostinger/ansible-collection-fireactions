@@ -1,0 +1,8 @@
+---
+firecracker_version: 1.4.1
+firecracker_url: |
+  https://github.com/firecracker-microvm/firecracker/releases/download/v{{ firecracker_version }}/firecracker-v{{ firecracker_version }}-{{ firecracker_arch }}.tgz
+firecracker_arch: x86_64
+firecracker_install_dir: /opt/firecracker/{{ firecracker_version }}
+firecracker_owner: root
+firecracker_group: root

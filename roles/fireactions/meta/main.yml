@@ -1,0 +1,85 @@
+---
+galaxy_info:
+  role_name: fireactions
+  author: hostinger
+  description: Ansible role to install and configure Fireactions
+  license: license (MIT)
+  min_ansible_version: "2.10"
+  platforms:
+  - name: Fedora
+    versions:
+    - all
+  - name: Debian
+    versions:
+    - all
+  - name: Ubuntu
+    versions:
+    - all
+  galaxy_tags:
+  - fireactions
+
+dependencies:
+  - role: hostinger.common.containerd
+    vars:
+      containerd_arch: "{{ fireactions_arch }}"
+      containerd_config: |
+        version = 2
+
+        root      = "/var/lib/containerd"
+        imports   = []
+        state     = "/run/containerd"
+        oom_score = 0
+
+        [grpc]
+          address = "/run/containerd/containerd.sock"
+          uid     = 0
+          gid     = 0
+
+        [plugins]
+          [plugins."io.containerd.snapshotter.v1.devmapper"]
+            pool_name       = "fireactions-thinpool"
+            root_path       = "/var/lib/containerd/devmapper"
+            base_image_size = "30GB"
+            discard_blocks  = true
+  - role: hostinger.common.cni_plugins
+    vars:
+      cni_plugins_arch: "{{ fireactions_arch }}"
+      cni_plugins_binaries:
+      - bridge
+      - host-local
+      - firewall
+  - role: hostinger.common.tc_redirect_tap
+    vars:
+      tc_redirect_tap_arch: "{{ fireactions_arch }}"
+      tc_redirect_tap_bin_dir: "{{ cni_plugins_bin_dir }}"
+  - role: hostinger.common.cni
+    vars:
+      cni_configs:
+        10-fireactions.conflist:
+          name: fireactions
+          cniVersion: 0.4.0
+          plugins:
+          - type: bridge
+            bridge: fireactions-br0
+            isDefaultGateway: true
+            forceAddress: false
+            ipMasq: true
+            hairpinMode: true
+            mtu: 1500
+            ipam:
+              type: host-local
+              subnet: 192.168.128.0/24
+              resolvConf: "/etc/resolv.conf"
+              dataDir: "/var/run/cni"
+          - type: firewall
+          - type: tc-redirect-tap
+  - role: hostinger.common.sysctl
+    vars:
+      sysctl_d:
+        10-fireactions:
+        - name: net.ipv4.conf.all.forwarding
+          value: 1
+  - role: firecracker
+    vars:
+      firecracker_arch: "{% if fireactions_arch == 'amd64' %}x86_64{% else %}aarch64{% endif %}"
+      firecracker_version: 1.4.1

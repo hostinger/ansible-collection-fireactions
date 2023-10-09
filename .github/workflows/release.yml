@@ -1,0 +1,20 @@
+---
+name: release
+
+on:
+  workflow_dispatch:
+  push:
+    tags:
+    - "**"
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Publish to Ansible Galaxy
+      uses: ansible/ansible-publish-action@v1.0.0
+      with:
+        api_key: ${{ secrets.ANSIBLE_GALAXY_API_KEY }}

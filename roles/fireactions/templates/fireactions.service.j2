@@ -1,0 +1,16 @@
+[Unit]
+Description=Fireactions
+Documentation=https://github.com/hostinger/fireactions
+After=network.target
+
+[Service]
+User={{ fireactions_owner }}
+Type=simple
+ExecStartPre=/usr/bin/which firecracker
+ExecStartPre=/usr/bin/which containerd
+ExecStart=fireactions server --config {{ fireactions_config_file_path }}
+Restart=always
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
