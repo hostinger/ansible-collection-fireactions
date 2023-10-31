@@ -1,8 +1,8 @@
 ---
 galaxy_info:
-  role_name: fireactions
+  role_name: firecracker
   author: hostinger
-  description: BYOM (Bring Your Own Metal) and run self-hosted GitHub runners in ephemeral, fast and secure Firecracker based virtual machines.
+  description: Ansible role for installing Firecracker
   license: license (MIT)
   min_ansible_version: "2.10"
   platforms:
@@ -16,4 +16,4 @@ galaxy_info:
     versions:
     - all
   galaxy_tags:
-  - fireactions
+  - firecracker
