@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.1](https://github.com/hostinger/ansible-collection-fireactions/compare/v0.1.0...v0.1.1) (2023-10-31)
+
+
+### Bug Fixes
+
+* **ci:** Test release-please ([f1349a3](https://github.com/hostinger/ansible-collection-fireactions/commit/f1349a32923454ed371ea7087ce146ca58f21fe4))
+
 ## 0.1.0 (2023-10-31)
 
 
