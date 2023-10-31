@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.2.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v0.1.1...v0.2.0) (2023-10-31)
+
+
+### Features
+
+* **roles:** Add containerd role ([71ee711](https://github.com/hostinger/ansible-collection-fireactions/commit/71ee7118f51875074ff790a99c460d3d16ce7ee4))
+
+
+### Bug Fixes
+
+* **roles/client:** Remove fireactions_os variable, support only linux ([8f922a6](https://github.com/hostinger/ansible-collection-fireactions/commit/8f922a60b5496697f603ab939563d2bb67f303dd))
+
 ## [0.1.1](https://github.com/hostinger/ansible-collection-fireactions/compare/v0.1.0...v0.1.1) (2023-10-31)
 
 
