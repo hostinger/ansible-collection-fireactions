@@ -1,0 +1,79 @@
+---
+- name: Fail when unsupported architecture
+  ansible.builtin.fail:
+    msg: "Unsupported architecture"
+  when:
+    - containerd_arch not in ['amd64', 'arm64']
+
+- name: Create directory
+  ansible.builtin.file:
+    path: "{{ containerd_install_dir }}"
+    state: directory
+    owner: "{{ containerd_owner }}"
+    group: "{{ containerd_group }}"
+    mode: 0755
+
+- name: Download tarball
+  ansible.builtin.get_url:
+    url: "{{ containerd_url }}"
+    dest: "{{ containerd_install_dir }}/containerd.tar.gz"
+    mode: 0644
+    owner: "{{ containerd_owner }}"
+    group: "{{ containerd_group }}"
+    timeout: 30
+
+- name: Unarchive tarball
+  ansible.builtin.unarchive:
+    src: "{{ containerd_install_dir }}/containerd.tar.gz"
+    dest: "{{ containerd_install_dir }}"
+    mode: 0755
+    creates: "{{ containerd_install_dir }}/bin/containerd"
+    owner: "{{ containerd_owner }}"
+    group: "{{ containerd_group }}"
+    remote_src: true
+
+- name: Create symlink to binaries
+  ansible.builtin.file:
+    src: "{{ containerd_install_dir }}/bin/{{ item }}"
+    dest: /usr/bin/{{ item }}
+    state: link
+    force: true
+    owner: "{{ containerd_owner }}"
+    group: "{{ containerd_group }}"
+    mode: 0755
+  with_items:
+    - "{{ containerd_binaries }}"
+
+- name: Create containerd configuration directory
+  ansible.builtin.file:
+    path: "{{ containerd_config_dir }}"
+    state: directory
+    owner: "{{ containerd_owner }}"
+    group: "{{ containerd_group }}"
+    mode: 0755
+
+- name: Create configuration file
+  ansible.builtin.copy:
+    content: "{{ containerd_config }}"
+    dest: "{{ containerd_config_dir }}/config.toml"
+    mode: 0644
+    owner: "{{ containerd_owner }}"
+    group: "{{ containerd_group }}"
+  notify:
+    - Restart containerd
+
+- name: Template service file
+  ansible.builtin.template:
+    src: containerd.service.j2
+    dest: /etc/systemd/system/containerd.service
+    mode: 0644
+    owner: root
+    group: root
+  notify:
+    - Restart containerd
+
+- name: Enable and start service
+  ansible.builtin.service:
+    name: containerd
+    enabled: true
+    state: started

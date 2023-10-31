@@ -4,5 +4,6 @@
   - all
 
   roles:
+  - hostinger.fireactions.containerd
   - hostinger.fireactions.firecracker
   - hostinger.fireactions.client
