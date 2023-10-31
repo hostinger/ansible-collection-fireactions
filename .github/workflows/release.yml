@@ -1,0 +1,22 @@
+name: release
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  release-please:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout project
+      uses: actions/checkout@v3
+
+    - name: Run release-please
+      uses: google-github-actions/release-please-action@v3
+      with:
+        package-name: ansible-collection-fireactions
+        release-type: python
+        pull-request-title-pattern: 'chore${scope}: Release ${component} ${version}'
+        token: ${{ secrets.ORG_GITHUB_TOKEN }}
+        extra-files: galaxy.yml
