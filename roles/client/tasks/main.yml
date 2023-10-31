@@ -5,12 +5,6 @@
   when:
     - fireactions_arch not in ['amd64', 'arm64']
 
-- name: Fail when unsupported OS
-  ansible.builtin.fail:
-    msg: "Unsupported OS"
-  when:
-    - fireactions_os not in ['linux']
-
 - name: Create group
   ansible.builtin.group:
     name: "{{ fireactions_group }}"
