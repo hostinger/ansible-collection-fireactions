@@ -1,3 +1,3 @@
 {{ ansible_managed | comment }}
 
-{{ fireactions_client_config | combine(_fireactions_client_config) | to_nice_yaml(indent=2) }}
+{{ _fireactions_client_config | combine(fireactions_client_config) | to_nice_yaml(indent=2) }}
