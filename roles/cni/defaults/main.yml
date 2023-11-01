@@ -1,0 +1,8 @@
+---
+cni_config_dir: /etc/cni/net.d
+cni_configs:
+  99-loopback.conf:
+    cniVersion: 0.3.1
+    type: loopback
+cni_owner: root
+cni_group: root
