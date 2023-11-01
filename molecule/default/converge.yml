@@ -4,7 +4,4 @@
   - all
 
   roles:
-  - hostinger.fireactions.containerd
-  - hostinger.fireactions.cni_plugins
-  - hostinger.fireactions.firecracker
   - hostinger.fireactions.client

@@ -3,58 +3,40 @@
   ansible.builtin.fail:
     msg: "Unsupported architecture"
   when:
-    - fireactions_arch not in ['amd64', 'arm64']
-
-- name: Create group
-  ansible.builtin.group:
-    name: "{{ fireactions_group }}"
-    system: true
-  when:
-    - fireactions_create_group | default(true) | bool
-
-- name: Create user
-  ansible.builtin.user:
-    name: "{{ fireactions_owner }}"
-    create_home: false
-    groups:
-      - "{{ fireactions_group }}"
-    shell: /sbin/nologin
-  when:
-    - fireactions_create_owner | default(true) | bool
+    - fireactions_client_arch not in ['amd64', 'arm64']
 
 - name: Create directories
   ansible.builtin.file:
     name: "{{ item }}"
     mode: 0755
-    owner: "{{ fireactions_owner }}"
-    group: "{{ fireactions_group }}"
+    owner: "{{ fireactions_client_owner }}"
+    group: "{{ fireactions_client_group }}"
     state: directory
   with_items:
-    - "{{ fireactions_install_dir }}"
-    - "{{ fireactions_install_dir }}/v{{ fireactions_version }}"
-    - "{{ fireactions_config_dir  }}"
+    - "{{ fireactions_client_install_dir }}"
+    - "{{ fireactions_client_config_dir  }}"
 
 - name: Download tarball
   ansible.builtin.get_url:
-    url: "{{ fireactions_url }}"
-    dest: "{{ fireactions_install_dir }}/v{{ fireactions_version }}/fireactions.tar.gz"
+    url: "{{ fireactions_client_url }}"
+    dest: "{{ fireactions_client_install_dir }}/fireactions.tar.gz"
     mode: 0644
-    owner: "{{ fireactions_owner }}"
-    group: "{{ fireactions_group }}"
+    owner: "{{ fireactions_client_owner }}"
+    group: "{{ fireactions_client_group }}"
     timeout: 30
 
 - name: Unarchive tarball
   ansible.builtin.unarchive:
-    src:  "{{ fireactions_install_dir }}/v{{ fireactions_version }}/fireactions.tar.gz"
+    src:  "{{ fireactions_client_install_dir }}/fireactions.tar.gz"
+    dest: "{{ fireactions_client_install_dir }}"
+    creates: "{{ fireactions_client_install_dir }}/fireactions"
+    owner: "{{ fireactions_client_owner }}"
+    group: "{{ fireactions_client_group }}"
     remote_src: true
-    dest: "{{ fireactions_install_dir }}/v{{ fireactions_version }}"
-    creates: "{{ fireactions_install_dir }}/v{{ fireactions_version }}/fireactions"
-    owner: "{{ fireactions_owner }}"
-    group: "{{ fireactions_group }}"
 
 - name: Create symlink to binary
   ansible.builtin.file:
-    src: "{{ fireactions_install_dir }}/v{{ fireactions_version }}/fireactions"
+    src: "{{ fireactions_client_install_dir }}/fireactions"
     dest: /usr/local/bin/fireactions
     mode: 0755
     state: link
@@ -73,9 +55,9 @@
 - name: Template config file
   ansible.builtin.template:
     src: config.yaml.j2
-    dest: "{{ fireactions_config_file_path }}"
-    owner: "{{ fireactions_owner }}"
-    group: "{{ fireactions_group }}"
+    dest: "{{ fireactions_client_config_file_path }}"
+    owner: "{{ fireactions_client_owner }}"
+    group: "{{ fireactions_client_group }}"
     mode: 0644
   notify:
     - Restart fireactions
@@ -84,5 +66,4 @@
   ansible.builtin.service:
     name: fireactions
     enabled: true
-    daemon_reload: true
     state: started

@@ -1,20 +1,32 @@
 ---
-fireactions_version: 0.0.1
-fireactions_arch: amd64
+fireactions_client_version: 1.0.3
+fireactions_client_arch: amd64
 # (konradasb): TODO: Change this to GitHub releases after public release.
-fireactions_url: |
-  https://storage.googleapis.com/fireactions/fireactions-v{{ fireactions_version }}-linux-{{ fireactions_arch }}.tar.gz
-fireactions_install_dir: /opt/fireactions
-fireactions_create_group: true
-fireactions_group: fireactions
-fireactions_create_owner: true
-fireactions_owner: fireactions
+fireactions_client_url: |
+  https://storage.googleapis.com/fireactions/fireactions-v{{ fireactions_client_version }}-linux-{{ fireactions_client_arch }}.tar.gz
+fireactions_client_install_dir: /opt/fireactions/{{ fireactions_client_version }}
+fireactions_client_group: root
+fireactions_client_owner: root
 
-fireactions_config_file_path: "{{ fireactions_config_dir }}/config.yaml"
-fireactions_config_dir: /etc/fireactions
-fireactions_config_server_url: http://127.0.0.1:8080
-fireactions_config_organisation: example
-fireactions_config_group: us-east-1
-fireactions_config_cpu_overcommit_ratio: 1.0
-fireactions_config_mem_overcommit_ratio: 1.0
-fireactions_config_log_level: info
+fireactions_client_config_file_path: "{{ fireactions_client_config_dir }}/config.yaml"
+fireactions_client_config_dir: /etc/fireactions
+fireactions_client_config: {}
+
+fireactions_client_cni_network_config:
+  name: fireactions
+  cniVersion: 0.4.0
+  plugins:
+  - type: bridge
+    bridge: fireactions-br0
+    isDefaultGateway: true
+    forceAddress: false
+    ipMasq: true
+    hairpinMode: true
+    mtu: 1500
+    ipam:
+      type: host-local
+      subnet: 192.168.128.0/24
+      resolvConf: "/etc/resolv.conf"
+      dataDir: "/var/run/cni"
+  - type: firewall
+  - type: tc-redirect-tap

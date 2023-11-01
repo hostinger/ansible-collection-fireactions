@@ -17,3 +17,20 @@ galaxy_info:
     - all
   galaxy_tags:
   - fireactions
+
+dependencies:
+  - role: containerd
+  - role: cni_plugins
+    vars:
+      cni_plugins_binaries:
+      - bridge
+      - host-local
+      - firewall
+      - tap
+  - role: cni
+    vars:
+      cni_configs:
+        10-fireactions.conf: "{{ fireactions_client_cni_network_config }}"
+  - role: firecracker
+    vars:
+      firecracker_version: 1.4.1

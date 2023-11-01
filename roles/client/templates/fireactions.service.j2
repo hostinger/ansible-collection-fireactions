@@ -1,15 +1,14 @@
 [Unit]
-Description=Fireactions
+Description=Fireactions client
 Documentation=https://github.com/hostinger/fireactions
-Requires=network.target
 After=network.target
 
 [Service]
-User={{ fireactions_owner }}
+User={{ fireactions_client_owner }}
 Type=simple
-ExecPreStart=/usr/bin/which fireactions
-ExecPreStart=/usr/bin/which firecracker
-ExecStart=fireactions client start --config {{ fireactions_config_file_path }}
+ExecStartPre=/usr/bin/which firecracker
+ExecStartPre=/usr/bin/which containerd
+ExecStart=fireactions client start --config {{ fireactions_client_config_file_path }}
 Restart=always
 RestartSec=10
 
