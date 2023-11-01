@@ -1,0 +1,49 @@
+---
+- name: Fail when unsupported architecture
+  ansible.builtin.fail:
+    msg: "Unsupported architecture"
+  when:
+    - cni_plugins_arch not in ['amd64', 'arm64']
+
+- name: Create directories
+  ansible.builtin.file:
+    path: "{{ item }}"
+    mode: 0755
+    state: directory
+    owner: "{{ cni_plugins_owner }}"
+    group: "{{ cni_plugins_group }}"
+  with_items:
+    - "{{ cni_plugins_dir }}"
+    - "{{ cni_plugins_install_dir }}"
+    - "{{ cni_plugins_bin_dir }}"
+
+- name: Download tarball
+  ansible.builtin.get_url:
+    url: "{{ cni_plugins_url }}"
+    dest: "{{ cni_plugins_install_dir }}/cni-plugins.tar.gz"
+    mode: 0644
+    owner: "{{ cni_plugins_owner }}"
+    group: "{{ cni_plugins_group }}"
+    timeout: 30
+
+- name: Unarchive tarball
+  ansible.builtin.unarchive:
+    src: "{{ cni_plugins_install_dir }}/cni-plugins.tar.gz"
+    dest: "{{ cni_plugins_install_dir }}"
+    creates: "{{ cni_plugins_install_dir }}/dummy"
+    owner: "{{ cni_plugins_owner }}"
+    group: "{{ cni_plugins_group }}"
+    remote_src: true
+    extra_opts:
+      - --strip-components=1
+
+- name: Create symlink to binaries
+  ansible.builtin.file:
+    src: "{{ cni_plugins_install_dir }}/{{ item }}"
+    dest: "{{ cni_plugins_bin_dir }}/{{ item }}"
+    mode: 0755
+    owner: "{{ cni_plugins_owner }}"
+    group: "{{ cni_plugins_group }}"
+    state: link
+  with_items:
+    - "{{ cni_plugins_binaries }}"
