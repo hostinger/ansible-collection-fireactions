@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.0.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v0.3.0...v1.0.0) (2023-11-01)
+
+
+### ⚠ BREAKING CHANGES
+
+* **roles/client:** Add support for v1.0.3
+
+### Features
+
+* **roles/client:** Add support for v1.0.3 ([dd79db0](https://github.com/hostinger/ansible-collection-fireactions/commit/dd79db0b87314de36a4d77a41ea822d6f54b0e7b))
+* **roles/cni_plugins:** Include all plugins in cni_plugins_binaries ([a791119](https://github.com/hostinger/ansible-collection-fireactions/commit/a7911194b4eb7ebb231f69bbdb8576a11594f5a9))
+* **roles:** Add cni role ([aee5914](https://github.com/hostinger/ansible-collection-fireactions/commit/aee591405edf2d3e8a7cc07375642fa1627914b8))
+
 ## [0.3.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v0.2.0...v0.3.0) (2023-11-01)
 
 
