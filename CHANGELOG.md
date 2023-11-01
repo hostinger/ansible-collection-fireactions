@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v0.2.0...v0.3.0) (2023-11-01)
+
+
+### Features
+
+* **ci:** Test roles on Ubuntu (22.04,20.04) and Debian (10,11,12) distros ([4d562d4](https://github.com/hostinger/ansible-collection-fireactions/commit/4d562d4bbd5ea66e5151caa097e6af590661a5d6))
+* **roles:** Add cni_plugins role ([f35d4e3](https://github.com/hostinger/ansible-collection-fireactions/commit/f35d4e3a53cac1e7e292b6ff943d53bc84da8c31))
+
 ## [0.2.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v0.1.1...v0.2.0) (2023-10-31)
 
 
