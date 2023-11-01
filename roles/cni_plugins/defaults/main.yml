@@ -9,7 +9,21 @@ cni_plugins_dir: /opt/cni
 cni_plugins_install_dir: "{{ cni_plugins_dir }}/{{ cni_plugins_version }}"
 cni_plugins_bin_dir: "{{ cni_plugins_dir }}/bin"
 cni_plugins_binaries:
-  - bridge
-  - host-local
-  - firewall
+  - loopback
+  - macvlan
+  - bandwidth
   - tap
+  - host-local
+  - dhcp
+  - ptp
+  - vlan
+  - static
+  - tuning
+  - bridge
+  - firewall
+  - sbr
+  - portmap
+  - dummy
+  - vrf
+  - host-device
+  - ipvlan
