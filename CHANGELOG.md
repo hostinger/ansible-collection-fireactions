@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.0.1](https://github.com/hostinger/ansible-collection-fireactions/compare/v1.0.0...v1.0.1) (2023-11-01)
+
+
+### Bug Fixes
+
+* **roles/client:** Correctly merge default config ([98b83d9](https://github.com/hostinger/ansible-collection-fireactions/commit/98b83d9a56983c6e291d3520d3b1c435d8d6ca6f))
+
 ## [1.0.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v0.3.0...v1.0.0) (2023-11-01)
 
 
