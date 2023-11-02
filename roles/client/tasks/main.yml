@@ -14,7 +14,7 @@
     state: directory
   with_items:
     - "{{ fireactions_client_install_dir }}"
-    - "{{ fireactions_client_config_dir  }}"
+    - "{{ fireactions_client_config_dir }}"
 
 - name: Download tarball
   ansible.builtin.get_url:
@@ -66,4 +66,4 @@
   ansible.builtin.service:
     name: fireactions
     enabled: true
-    state: started
+    state: "{{ fireactions_client_service_state }}"

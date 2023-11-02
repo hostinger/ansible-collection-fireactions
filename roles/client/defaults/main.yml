@@ -7,6 +7,7 @@ fireactions_client_url: |
 fireactions_client_install_dir: /opt/fireactions/{{ fireactions_client_version }}
 fireactions_client_group: root
 fireactions_client_owner: root
+fireactions_client_service_state: started
 
 fireactions_client_config_file_path: "{{ fireactions_client_config_dir }}/config.yaml"
 fireactions_client_config_dir: /etc/fireactions
