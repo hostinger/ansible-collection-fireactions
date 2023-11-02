@@ -1,0 +1,8 @@
+---
+# Example:
+#
+# sysctl_d:
+#   99-fireactions:
+#    - name: net.ipv4.ip_forward
+#      value: 1
+sysctl_d: {}

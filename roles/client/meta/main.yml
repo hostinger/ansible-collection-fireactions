@@ -31,6 +31,12 @@ dependencies:
     vars:
       cni_configs:
         10-fireactions.conf: "{{ fireactions_client_cni_network_config }}"
+  - role: sysctl
+    vars:
+      sysctl_d:
+        10-fireactions:
+        - name: net.ipv4.ip_forward
+          value: 1
   - role: firecracker
     vars:
       firecracker_version: 1.4.1
