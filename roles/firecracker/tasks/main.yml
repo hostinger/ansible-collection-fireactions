@@ -5,21 +5,13 @@
   when:
     - firecracker_arch not in ['x86_64', 'aarch64']
 
-- name: Check if directory exists
-  ansible.builtin.stat:
-    path: "{{ firecracker_install_dir }}"
-  register: firecracker_directories
-
 - name: Create directory
   ansible.builtin.file:
     name: "{{ firecracker_install_dir }}"
     mode: 0755
     owner: "{{ firecracker_owner }}"
     group: "{{ firecracker_group }}"
-    recurse: true
     state: directory
-  when:
-    - firecracker_directories.stat.exists == false
 
 - name: Download tarball
   ansible.builtin.get_url:
@@ -44,9 +36,7 @@
 - name: Create symlink to binary
   ansible.builtin.file:
     src: "{{ firecracker_install_dir }}/firecracker-v{{ firecracker_version }}-{{ firecracker_arch }}"
-    dest: "{{ firecracker_symlink_path }}"
+    dest: /usr/local/bin/firecracker
     mode: 0755
     state: link
     force: true
-  when:
-    - firecracker_create_symlink | bool
