@@ -20,17 +20,26 @@ galaxy_info:
 
 dependencies:
   - role: containerd
+    vars:
+      containerd_arch: "{{ fireactions_client_arch }}"
+    when:
+    - fireactions_client_install_containerd | default(true)
   - role: cni_plugins
     vars:
+      cni_plugins_arch: "{{ fireactions_client_arch }}"
       cni_plugins_binaries:
       - bridge
       - host-local
       - firewall
       - tap
+    when:
+    - fireactions_client_install_cni_plugins | default(true)
   - role: cni
     vars:
       cni_configs:
         10-fireactions.conf: "{{ fireactions_client_cni_network_config }}"
+    when:
+    - fireactions_client_install_cni | default(true)
   - role: sysctl
     vars:
       sysctl_d:
@@ -39,4 +48,7 @@ dependencies:
           value: 1
   - role: firecracker
     vars:
+      firecracker_arch: "{% if fireactions_client_arch == 'amd64' %}x86_64{% else %}aarch64{% endif %}"
       firecracker_version: 1.4.1
+    when:
+    - fireactions_client_install_firecracker | default(true)
