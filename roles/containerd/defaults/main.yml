@@ -5,6 +5,7 @@ containerd_install_dir: /opt/containerd/{{ containerd_version }}
 containerd_owner: root
 containerd_group: root
 containerd_arch: amd64
+containerd_service_state: started
 containerd_binaries:
   - containerd
   - ctr

@@ -76,4 +76,4 @@
   ansible.builtin.service:
     name: containerd
     enabled: true
-    state: started
+    state: "{{ containerd_service_state }}"
