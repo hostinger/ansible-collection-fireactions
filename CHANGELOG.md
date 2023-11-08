@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.1.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v1.0.1...v1.1.0) (2023-11-08)
+
+
+### Features
+
+* **roles/client:** Ability to disable dependencies install ([a5a3561](https://github.com/hostinger/ansible-collection-fireactions/commit/a5a3561a1242c1e5142ceb4007f45e37a45cce61))
+* **roles/client:** Allow setting service state ([c8fc0ef](https://github.com/hostinger/ansible-collection-fireactions/commit/c8fc0ef5041fb41d7dbe04dca49c9799b6a39e3d))
+* **roles/client:** Set sysctl setting net.ipv4.ip_forward=1 ([2805cb4](https://github.com/hostinger/ansible-collection-fireactions/commit/2805cb46726e999f9c919618a355f999cd8a3e20))
+* **roles/containerd:** Allow setting service state ([627a69e](https://github.com/hostinger/ansible-collection-fireactions/commit/627a69e24caa119c12eaf6b666cd64145b2c173f))
+* **roles/firecracker:** Remove option to configure symlink ([57d0e72](https://github.com/hostinger/ansible-collection-fireactions/commit/57d0e7258d0ab39490ebb9de5f24753ca9fcb7dd))
+* **roles:** Add sysctl role ([2805cb4](https://github.com/hostinger/ansible-collection-fireactions/commit/2805cb46726e999f9c919618a355f999cd8a3e20))
+
 ## [1.0.1](https://github.com/hostinger/ansible-collection-fireactions/compare/v1.0.0...v1.0.1) (2023-11-01)
 
 
