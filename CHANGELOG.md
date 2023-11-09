@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.2.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v1.1.0...v1.2.0) (2023-11-09)
+
+
+### Features
+
+* Move out core roles to hostinger.core collection ([fb87471](https://github.com/hostinger/ansible-collection-fireactions/commit/fb874715241af6beb912431cba6e0930fbfd5ee3))
+
 ## [1.1.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v1.0.1...v1.1.0) (2023-11-08)
 
 
