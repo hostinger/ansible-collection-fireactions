@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.3.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v1.2.0...v1.3.0) (2023-11-09)
+
+
+### Features
+
+* **ci:** Publish to Ansible Galaxy on release ([5d56a00](https://github.com/hostinger/ansible-collection-fireactions/commit/5d56a002d626ae0c936ded4c9513161c8df45a04))
+
 ## [1.2.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v1.1.0...v1.2.0) (2023-11-09)
 
 
