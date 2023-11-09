@@ -19,12 +19,12 @@ galaxy_info:
   - fireactions
 
 dependencies:
-  - role: containerd
+  - role: hostinger.core.containerd
     vars:
       containerd_arch: "{{ fireactions_client_arch }}"
     when:
     - fireactions_client_install_containerd | default(true)
-  - role: cni_plugins
+  - role: hostinger.core.cni_plugins
     vars:
       cni_plugins_arch: "{{ fireactions_client_arch }}"
       cni_plugins_binaries:
@@ -34,13 +34,13 @@ dependencies:
       - tap
     when:
     - fireactions_client_install_cni_plugins | default(true)
-  - role: cni
+  - role: hostinger.core.cni
     vars:
       cni_configs:
         10-fireactions.conf: "{{ fireactions_client_cni_network_config }}"
     when:
     - fireactions_client_install_cni | default(true)
-  - role: sysctl
+  - role: hostinger.core.sysctl
     vars:
       sysctl_d:
         10-fireactions:

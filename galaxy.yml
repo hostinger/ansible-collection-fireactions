@@ -11,5 +11,6 @@ license:
   - MIT
 dependencies:
   community.general: ">=4.5.0"
+  hostinger.core: ">=0.1.0"
 tags:
   - fireactions

@@ -1,8 +1,0 @@
----
-- name: Create or update sysctl file {{ sysctl_config.key }}
-  ansible.posix.sysctl:
-    name: "{{ item.name }}"
-    sysctl_file: "/etc/sysctl.d/{{ sysctl_config.key }}.conf"
-    sysctl_set: true
-    value: "{{ item.value | string }}"
-  loop: "{{ sysctl_config.value }}"
