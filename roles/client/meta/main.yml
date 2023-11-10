@@ -56,7 +56,7 @@ dependencies:
   - role: hostinger.core.cni
     vars:
       cni_configs:
-        10-fireactions.conf:
+        10-fireactions.conflist:
           name: fireactions
           cniVersion: 0.4.0
           plugins:
