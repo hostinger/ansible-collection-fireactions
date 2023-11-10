@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.4.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v1.3.0...v1.4.0) (2023-11-10)
+
+
+### Features
+
+* **client:** Add default containerd config ([0f0239b](https://github.com/hostinger/ansible-collection-fireactions/commit/0f0239b4c9e9079d4d126c64276c0bf44e1dcf24))
+* **client:** Update version to v1.2.0 ([55caf99](https://github.com/hostinger/ansible-collection-fireactions/commit/55caf99e84cafb819d3a5e60f7cc4c228031ec21))
+
 ## [1.3.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v1.2.0...v1.3.0) (2023-11-09)
 
 
