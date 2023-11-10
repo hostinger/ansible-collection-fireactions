@@ -1,5 +1,5 @@
 ---
-fireactions_client_version: 1.0.3
+fireactions_client_version: 1.2.0
 fireactions_client_arch: amd64
 # (konradasb): TODO: Change this to GitHub releases after public release.
 fireactions_client_url: |
