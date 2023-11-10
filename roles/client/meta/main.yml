@@ -22,6 +22,25 @@ dependencies:
   - role: hostinger.core.containerd
     vars:
       containerd_arch: "{{ fireactions_client_arch }}"
+      containerd_config: |
+        version = 2
+
+        root      = "/var/lib/containerd"
+        imports   = []
+        state     = "/run/containerd"
+        oom_score = 0
+
+        [grpc]
+          address = "/run/containerd/containerd.sock"
+          uid     = 0
+          gid     = 0
+
+        [plugins]
+          [plugins."io.containerd.snapshotter.v1.devmapper"]
+            pool_name       = "fireactions-thinpool"
+            root_path       = "/var/lib/containerd/devmapper"
+            base_image_size = "30GB"
+            discard_blocks  = true
     when:
     - fireactions_client_install_containerd | default(true)
   - role: hostinger.core.cni_plugins
@@ -37,7 +56,24 @@ dependencies:
   - role: hostinger.core.cni
     vars:
       cni_configs:
-        10-fireactions.conf: "{{ fireactions_client_cni_network_config }}"
+        10-fireactions.conf:
+          name: fireactions
+          cniVersion: 0.4.0
+          plugins:
+          - type: bridge
+            bridge: fireactions-br0
+            isDefaultGateway: true
+            forceAddress: false
+            ipMasq: true
+            hairpinMode: true
+            mtu: 1500
+            ipam:
+              type: host-local
+              subnet: 192.168.128.0/24
+              resolvConf: "/etc/resolv.conf"
+              dataDir: "/var/run/cni"
+          - type: firewall
+          - type: tc-redirect-tap
     when:
     - fireactions_client_install_cni | default(true)
   - role: hostinger.core.sysctl

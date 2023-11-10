@@ -12,22 +12,3 @@ fireactions_client_service_state: started
 fireactions_client_config_file_path: "{{ fireactions_client_config_dir }}/config.yaml"
 fireactions_client_config_dir: /etc/fireactions
 fireactions_client_config: {}
-
-fireactions_client_cni_network_config:
-  name: fireactions
-  cniVersion: 0.4.0
-  plugins:
-  - type: bridge
-    bridge: fireactions-br0
-    isDefaultGateway: true
-    forceAddress: false
-    ipMasq: true
-    hairpinMode: true
-    mtu: 1500
-    ipam:
-      type: host-local
-      subnet: 192.168.128.0/24
-      resolvConf: "/etc/resolv.conf"
-      dataDir: "/var/run/cni"
-  - type: firewall
-  - type: tc-redirect-tap
