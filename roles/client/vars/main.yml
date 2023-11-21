@@ -4,10 +4,6 @@ _fireactions_client_config:
 
   poll_interval: 5s
 
-  heartbeat_interval: 1s
-  heartbeat_success_threshold: 1
-  heartbeat_failure_threshold: 1
-
   node:
     name: ""
     cpu_overcommit_ratio: 1.0
@@ -29,9 +25,5 @@ _fireactions_client_config:
     conf_dir: /etc/cni/net.d
     bin_dirs:
     - /opt/cni/bin
-
-  metrics:
-    listen_addr: 127.0.0.1:8080
-    enabled: true
 
   log_level: debug
