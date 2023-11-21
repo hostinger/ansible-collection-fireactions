@@ -8,7 +8,7 @@ User={{ fireactions_client_owner }}
 Type=simple
 ExecStartPre=/usr/bin/which firecracker
 ExecStartPre=/usr/bin/which containerd
-ExecStart=fireactions client start --config {{ fireactions_client_config_file_path }}
+ExecStart=fireactions client --config {{ fireactions_client_config_file_path }}
 Restart=always
 RestartSec=10
 
