@@ -2,7 +2,7 @@
 namespace: hostinger
 name: fireactions
 repository: https://github.com/hostinger/ansible-collection-fireactions
-version: 1.4.0 # x-release-please-version
+version: 1.5.0 # x-release-please-version
 readme: README.md
 authors:
   - konradasb

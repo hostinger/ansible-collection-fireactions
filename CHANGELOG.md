@@ -1,5 +1,18 @@
 # Changelog
 
+## [1.5.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v1.4.0...v1.5.0) (2023-11-21)
+
+
+### Features
+
+* **roles/client:** Update for Fireactions version v1.3.0 ([18d7135](https://github.com/hostinger/ansible-collection-fireactions/commit/18d7135c162c3b617741f8dcfa33ad2c0c95465f))
+
+
+### Bug Fixes
+
+* **roles/client:** CNI config file should end with .conflist instead of .conf ([911a3a2](https://github.com/hostinger/ansible-collection-fireactions/commit/911a3a2174e0f81b656823780586943069f30789))
+* **roles/client:** Use net.ipv4.conf.all.forwarding instead of net.ipv4.ip_forward ([90b903d](https://github.com/hostinger/ansible-collection-fireactions/commit/90b903d408fbfa65ad555fabb492f59c71a8125d))
+
 ## [1.4.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v1.3.0...v1.4.0) (2023-11-10)
 
 
