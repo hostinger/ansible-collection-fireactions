@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.5.1](https://github.com/hostinger/ansible-collection-fireactions/compare/v1.5.0...v1.5.1) (2023-11-21)
+
+
+### Bug Fixes
+
+* **roles/client:** Fix ExecStart command in service file ([bc14400](https://github.com/hostinger/ansible-collection-fireactions/commit/bc14400283dae5e7200fc112c96ebb84acb479f3))
+
 ## [1.5.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v1.4.0...v1.5.0) (2023-11-21)
 
 
