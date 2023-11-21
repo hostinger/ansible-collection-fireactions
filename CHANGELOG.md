@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.6.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v1.5.1...v1.6.0) (2023-11-21)
+
+
+### Features
+
+* Install tc-redirect-tap dependency from hostinger.core.tc_redirect_tap ([7e5bd44](https://github.com/hostinger/ansible-collection-fireactions/commit/7e5bd44b765bcc34f45fa85222cb110729911180))
+
 ## [1.5.1](https://github.com/hostinger/ansible-collection-fireactions/compare/v1.5.0...v1.5.1) (2023-11-21)
 
 
