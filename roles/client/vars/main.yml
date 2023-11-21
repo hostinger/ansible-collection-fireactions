@@ -25,5 +25,6 @@ _fireactions_client_config:
     conf_dir: /etc/cni/net.d
     bin_dirs:
     - /opt/cni/bin
+    - /opt/tc-redirect-tap/bin
 
   log_level: debug

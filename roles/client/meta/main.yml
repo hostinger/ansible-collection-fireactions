@@ -50,9 +50,13 @@ dependencies:
       - bridge
       - host-local
       - firewall
-      - tap
     when:
     - fireactions_client_install_cni_plugins | default(true)
+  - role: hostinger.core.tc_redirect_tap
+    vars:
+      tc_redirect_tap_arch: "{{ fireactions_client_arch }}"
+    when:
+    - fireactions_client_install_tc_redirect_tap | default(true)
   - role: hostinger.core.cni
     vars:
       cni_configs:
