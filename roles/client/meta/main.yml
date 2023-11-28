@@ -55,6 +55,7 @@ dependencies:
   - role: hostinger.core.tc_redirect_tap
     vars:
       tc_redirect_tap_arch: "{{ fireactions_client_arch }}"
+      tc_redirect_tap_bin_dir: "{{ cni_plugins_bin_dir }}"
     when:
     - fireactions_client_install_tc_redirect_tap | default(true)
   - role: hostinger.core.cni
