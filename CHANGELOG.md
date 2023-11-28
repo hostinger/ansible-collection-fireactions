@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v1.6.0...v1.7.0) (2023-11-28)
+
+
+### Features
+
+* **client:** Update to v2.0.0 ([#15](https://github.com/hostinger/ansible-collection-fireactions/issues/15)) ([31e1f51](https://github.com/hostinger/ansible-collection-fireactions/commit/31e1f5149881e3adbe2e263e79c0340c2b5699ba))
+
 ## [1.6.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v1.5.1...v1.6.0) (2023-11-21)
 
 
