@@ -41,6 +41,8 @@
     mode: 0755
     state: link
     force: true
+  notify:
+    - Restart fireactions
 
 - name: Template service file
   ansible.builtin.template:
