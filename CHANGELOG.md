@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.7.1](https://github.com/hostinger/ansible-collection-fireactions/compare/v1.7.0...v1.7.1) (2023-11-30)
+
+
+### Bug Fixes
+
+* **client:** Notify to restart fireactions service on symlink change ([f9454fd](https://github.com/hostinger/ansible-collection-fireactions/commit/f9454fd715b7a4088ca8409e39eb344ee7325cac))
+
 ## [1.7.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v1.6.0...v1.7.0) (2023-11-28)
 
 
