@@ -9,9 +9,9 @@ None.
 ## Dependencies
 
 - hostinger.fireactions.firecracker
-- hostinger.core.containerd
-- hostinger.core.cni
-- hostinger.core.cni_plugins
+- hostinger.common.containerd
+- hostinger.common.cni
+- hostinger.common.cni_plugins
 
 ## Role Variables
 

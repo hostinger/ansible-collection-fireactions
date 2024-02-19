@@ -19,7 +19,7 @@ galaxy_info:
   - fireactions
 
 dependencies:
-  - role: hostinger.core.containerd
+  - role: hostinger.common.containerd
     vars:
       containerd_arch: "{{ fireactions_client_arch }}"
       containerd_config: |
@@ -43,7 +43,7 @@ dependencies:
             discard_blocks  = true
     when:
     - fireactions_client_install_containerd | default(true)
-  - role: hostinger.core.cni_plugins
+  - role: hostinger.common.cni_plugins
     vars:
       cni_plugins_arch: "{{ fireactions_client_arch }}"
       cni_plugins_binaries:
@@ -52,13 +52,13 @@ dependencies:
       - firewall
     when:
     - fireactions_client_install_cni_plugins | default(true)
-  - role: hostinger.core.tc_redirect_tap
+  - role: hostinger.common.tc_redirect_tap
     vars:
       tc_redirect_tap_arch: "{{ fireactions_client_arch }}"
       tc_redirect_tap_bin_dir: "{{ cni_plugins_bin_dir }}"
     when:
     - fireactions_client_install_tc_redirect_tap | default(true)
-  - role: hostinger.core.cni
+  - role: hostinger.common.cni
     vars:
       cni_configs:
         10-fireactions.conflist:
@@ -81,7 +81,7 @@ dependencies:
           - type: tc-redirect-tap
     when:
     - fireactions_client_install_cni | default(true)
-  - role: hostinger.core.sysctl
+  - role: hostinger.common.sysctl
     vars:
       sysctl_d:
         10-fireactions:
