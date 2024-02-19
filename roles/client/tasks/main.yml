@@ -29,14 +29,16 @@
   ansible.builtin.unarchive:
     src:  "{{ fireactions_client_install_dir }}/fireactions.tar.gz"
     dest: "{{ fireactions_client_install_dir }}"
-    creates: "{{ fireactions_client_install_dir }}/fireactions"
+    creates: "{{ fireactions_client_install_dir }}/fireactions-v{{ fireactions_client_version }}-linux-{{ fireactions_client_arch }}"
     owner: "{{ fireactions_client_owner }}"
     group: "{{ fireactions_client_group }}"
     remote_src: true
+    extra_opts: 
+      - "--strip-components=1"
 
 - name: Create symlink to binary
   ansible.builtin.file:
-    src: "{{ fireactions_client_install_dir }}/fireactions"
+    src: "{{ fireactions_client_install_dir }}/fireactions-v{{ fireactions_client_version }}-linux-{{ fireactions_client_arch }}"
     dest: /usr/local/bin/fireactions
     mode: 0755
     state: link
