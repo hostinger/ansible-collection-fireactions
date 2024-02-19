@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.7.2](https://github.com/hostinger/ansible-collection-fireactions/compare/v1.7.1...v1.7.2) (2024-02-19)
+
+
+### Bug Fixes
+
+* **client:** Use --strip-components=1 when unarchiving ([bdb0d2a](https://github.com/hostinger/ansible-collection-fireactions/commit/bdb0d2a85a47235806d955f5571659dc19cb6abf))
+* Use hostinger.common collection ([da435ef](https://github.com/hostinger/ansible-collection-fireactions/commit/da435ef340bf042ed1fd00958c904b45a2a0b8b7))
+
 ## [1.7.1](https://github.com/hostinger/ansible-collection-fireactions/compare/v1.7.0...v1.7.1) (2023-11-30)
 
 
