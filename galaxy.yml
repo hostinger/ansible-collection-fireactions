@@ -1,8 +1,7 @@
----
 namespace: hostinger
 name: fireactions
 repository: https://github.com/hostinger/ansible-collection-fireactions
-version: 0.0.1 # x-release-please-version
+version: 0.1.0
 readme: README.md
 authors:
   - konradasb
@@ -10,7 +9,7 @@ description: Ansible collection for deploying Fireactions and required dependenc
 license:
   - MIT
 dependencies:
-  community.general: ">=4.5.0"
-  hostinger.common: ">=0.6.0"
+  community.general: '>=4.5.0'
+  hostinger.common: '>=0.6.0'
 tags:
   - fireactions
