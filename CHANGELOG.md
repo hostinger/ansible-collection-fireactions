@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.2](https://github.com/hostinger/ansible-collection-fireactions/compare/v0.1.1...v0.1.2) (2024-04-05)
+
+
+### Bug Fixes
+
+* **roles/fireactions:** Set systemd service KillMode=process ([ffd18ba](https://github.com/hostinger/ansible-collection-fireactions/commit/ffd18ba11f4530fbecd5e6fe554070637eb342f6))
+
 ## [0.1.1](https://github.com/hostinger/ansible-collection-fireactions/compare/v0.1.0...v0.1.1) (2024-03-13)
 
 
