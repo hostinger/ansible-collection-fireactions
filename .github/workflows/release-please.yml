@@ -7,6 +7,10 @@ on:
     branches:
     - main
 
+permissions:
+  contents: read
+  pull-requests: write
+
 jobs:
   release-please:
     runs-on: ubuntu-latest
@@ -17,4 +21,4 @@ jobs:
     - name: Run release-please
       uses: google-github-actions/release-please-action@v4
       with:
-        token: ${{ secrets.ORG_GITHUB_TOKEN }}
+        token: ${{ secrets.GITHUB_TOKEN }}
