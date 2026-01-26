@@ -4,14 +4,14 @@ Ansible role to install and configure [Fireactions](https://github.com/hostinger
 
 ## Requirements
 
-None.
+- Firecracker
+- Containerd
+- CNI configuration
+- CNI plugins (including tc-redirect-tap)
 
 ## Dependencies
 
-- hostinger.fireactions.firecracker
-- hostinger.common.containerd
-- hostinger.common.cni
-- hostinger.common.cni_plugins
+None
 
 ## Role Variables
 
