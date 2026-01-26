@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v0.1.2...v0.2.0) (2026-01-26)
+
+
+### Features
+
+* **fireactions:** Make role standalone by excluding dependencies ([#29](https://github.com/hostinger/ansible-collection-fireactions/issues/29)) ([cb237cf](https://github.com/hostinger/ansible-collection-fireactions/commit/cb237cf3a4e932a2de849615232f2abff5d78dce))
+* **fireactions:** Update version to v1.0.0 ([#30](https://github.com/hostinger/ansible-collection-fireactions/issues/30)) ([4f042e2](https://github.com/hostinger/ansible-collection-fireactions/commit/4f042e2f653072a182c4f00653f2af613b7adac1))
+
 ## [0.1.2](https://github.com/hostinger/ansible-collection-fireactions/compare/v0.1.1...v0.1.2) (2024-04-05)
 
 
