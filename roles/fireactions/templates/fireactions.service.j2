@@ -6,7 +6,6 @@ After=network.target
 [Service]
 User={{ fireactions_owner }}
 Type=simple
-KillMode=process
 ExecStartPre=/usr/bin/which firecracker
 ExecStartPre=/usr/bin/which containerd
 ExecStart=fireactions server --config {{ fireactions_config_file_path }}
