@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.2.1](https://github.com/hostinger/ansible-collection-fireactions/compare/v0.2.0...v0.2.1) (2026-02-02)
+
+
+### Bug Fixes
+
+* **fireactions:** Remove KillMode=process ([c6ce299](https://github.com/hostinger/ansible-collection-fireactions/commit/c6ce299f83badc5b843373cbe84806434b4ff9ef))
+
 ## [0.2.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v0.1.2...v0.2.0) (2026-01-26)
 
 
