@@ -11,13 +11,13 @@ jobs:
       roles: ${{ steps.changed-files.outputs.all_changed_files }}
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
       with:
         fetch-depth: 0
 
     - name: Get changed files
       id: changed-files
-      uses: tj-actions/changed-files@v46
+      uses: tj-actions/changed-files@ed68ef82c095e0d48ec87eccea555d944a631a4c # v46
       with:
         dir_names: "true"
         escape_json: "false"
@@ -46,10 +46,10 @@ jobs:
     needs: changed-files
     steps:
     - name: Checkout
-      uses: actions/checkout@v4
+      uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
 
     - name: Set up Python 3
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@e9aba2c848f5ebd159c070c61ea2c4e2b122355e # v2
       with:
         python-version: '3.x'
 
