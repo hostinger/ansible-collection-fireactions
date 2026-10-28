@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.3.0](https://github.com/hostinger/ansible-collection-fireactions/compare/v0.2.1...v0.3.0) (2026-10-28)
+
+
+### Features
+
+* Update CODEOWNERS ([#45](https://github.com/hostinger/ansible-collection-fireactions/issues/45)) ([b50629f](https://github.com/hostinger/ansible-collection-fireactions/commit/b50629f499c227f3ebfc183ef27114ce2ed33bef))
+
+
+### Bug Fixes
+
+* replace pull_request_target with pull_request in lint-pr workflow ([#43](https://github.com/hostinger/ansible-collection-fireactions/issues/43)) ([34afcbe](https://github.com/hostinger/ansible-collection-fireactions/commit/34afcbe80704a5498a36c1bcd389629771141374))
+
 ## [0.2.1](https://github.com/hostinger/ansible-collection-fireactions/compare/v0.2.0...v0.2.1) (2026-02-02)
 
 
